@@ -29,6 +29,7 @@
 #include <errno.h>
 #include <sys/stat.h>
 #include <sys/mman.h>
+#include <sys/sysmacros.h>
 #include <sys/ioctl.h>
 #include <linux/usb/video.h>
 #include <linux/uvcvideo.h>

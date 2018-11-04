@@ -26,6 +26,7 @@ else()
 endif()
 
 if(BUILD_GRAPHICAL_EXAMPLES)
+    set(OpenGL_GL_PREFERENCE "GLVND")
     find_package(OpenGL REQUIRED)
     set(DEPENDENCIES realsense ${OPENGL_LIBRARIES})
 
