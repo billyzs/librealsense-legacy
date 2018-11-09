@@ -71,6 +71,7 @@ int main(int argc, char * argv[]) try
         auto dev = reinterpret_cast<rs::device *>(glfwGetWindowUserPointer(win));
         if (action != GLFW_RELEASE) switch (key)
         {
+        case GLFW_KEY_Q: glfwSetWindowShouldClose(win, 1); break;
         case GLFW_KEY_R: color_rectification_enabled = !color_rectification_enabled; break;
         case GLFW_KEY_C: align_color_to_depth = !align_color_to_depth; break;
         case GLFW_KEY_D: align_depth_to_color = !align_depth_to_color; break;
@@ -122,6 +123,13 @@ int main(int argc, char * argv[]) try
 
     glfwDestroyWindow(win);
     glfwTerminate();
+    if (dev.is_streaming()) {
+        for (auto stream : supported_streams) {
+            dev.disable_stream(stream);
+        }
+        dev.stop();
+    }
+
     return EXIT_SUCCESS;
 }
 catch (const rs::error & e)
